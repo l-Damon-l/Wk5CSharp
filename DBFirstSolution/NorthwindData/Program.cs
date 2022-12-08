@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Microsoft.EntityFrameworkCore;
+using NorthwindData;
 using NorthwindData.Models;
 using System.Reflection.Metadata.Ecma335;
 
@@ -43,6 +44,7 @@ using System.Reflection.Metadata.Ecma335;
 #endregion
 
 #region Homework Tasks
+
 // -Read all Trainee's information
 //static void ReadAllInfo() {
 //    using var db = new NorthwindContext();
@@ -171,10 +173,79 @@ using System.Reflection.Metadata.Ecma335;
 #endregion
 
 
+#region LINQ Method Syntax
+
+//using (var db = new NorthwindContext()) {
+//    var query = db.Customers
+//        .Where(c => c.City == "London")
+//        .OrderBy(c => c.ContactName);
+//}
 
 
 
+//var nums = new List<int> { 3, 7, 1, 2, 8, 3, 0, 4, 5 };
+//Console.WriteLine(nums.Count(num => num % 2 is 0));
+//Console.WriteLine(nums.Count(num => num % 2 is 1));
+//Console.WriteLine(nums.Count(num => num <= 4));
 
+//// number cubed is greater than 100
+//Console.WriteLine(nums.Count(num => {
+//    var numCubed = num * num * num;
+//    return numCubed > 100;
+//}));
+
+
+
+//List<Person> people = new List<Person>
+//{
+//    new Person { Name = "Fred", Age = 22 },
+//    new Person { Name = "Bernard", Age = 35 },
+//    new Person { Name = "Margaret", Age = 54 }
+//};
+
+//var youngPeople = people.Where(p => p.Age < 30).ToList();
+//youngPeople.ForEach(person => Console.WriteLine(person.Name));
+
+//var nums = new List<int> { 3, 7, 1, 2, 8, 3, 0, 4, 5 };
+//Console.WriteLine("Delegate: " + nums.Count(delegate (int n) { return n % 2 == 0; }));
+#endregion
+
+
+#region Method Syntax Task
+
+//using (var db = new NorthwindContext()) {
+    //var berlinOrLondon = db.Customers
+    //    .Select(c => new { c.ContactName, c.City })
+    //    .Where(c => c.City == "London" || c.City == "Berlin");
+
+    //foreach (var c in berlinOrLondon) {
+    //    Console.WriteLine($"{c.ContactName} lives in {c.City}");
+    //}
+
+    //var productsGrouped = db.Products
+    //    .Select(p => new { p.UnitsInStock, p.SupplierId })
+    //    .GroupBy(p => p.SupplierId)
+    //    .Select(p => new {
+    //        Total = p.Sum(p => p.UnitsInStock),
+    //        SupplierId = p.Key
+    //    });
+
+    //foreach (var prod in productsGrouped) {
+    //    Console.WriteLine($"Supplier {prod.SupplierId} has {prod.Total} units in stock");
+    //}
+
+    //var productsOrdered = db.Products
+    //    .Select(p => new { p.QuantityPerUnit, p.ReorderLevel })
+    //    .OrderBy(p => p.QuantityPerUnit)
+    //    .ThenByDescending(p => p.ReorderLevel);
+
+    //foreach (var product in productsOrdered) {
+    //    Console.WriteLine($"{product.QuantityPerUnit} - {product.ReorderLevel}");
+    //}
+//}
+
+
+#endregion
 
 
 
