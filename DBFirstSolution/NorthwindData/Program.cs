@@ -42,79 +42,145 @@ using System.Reflection.Metadata.Ecma335;
 //}
 #endregion
 
-
 #region Homework Tasks
 // -Read all Trainee's information
-static void ReadAllInfo() {
-    using var db = new NorthwindContext();
-    foreach (var spartan in db.Spartans) {
-        // ToString updated in SpartanExtras file
-        Console.WriteLine(spartan);
-    }
-}
+//static void ReadAllInfo() {
+//    using var db = new NorthwindContext();
+//    foreach (var spartan in db.Spartans) {
+//        // ToString updated in SpartanExtras file
+//        Console.WriteLine(spartan);
+//    }
+//}
 
-// - Add some trainees to the database
-static void AddSpartans(List<Spartan> spartanList) {
-    // No checks for if these people are already in the table
-    // so it would just add them again
-    using var db = new NorthwindContext();
-    spartanList.ForEach(s => {
-        Console.WriteLine($"Adding {s.FirstName} {s.LastName} to the Spartans database");
-        db.Spartans.Add(s);
-    });
-    db.SaveChanges();
-}
+//// - Add some trainees to the database
+//static void AddSpartans(List<Spartan> spartanList) {
+//    // No checks for if these people are already in the table
+//    // so it would just add them again
+//    using var db = new NorthwindContext();
+//    spartanList.ForEach(s => {
+//        Console.WriteLine($"Adding {s.FirstName} {s.LastName} to the Spartans database");
+//        db.Spartans.Add(s);
+//    });
+//    db.SaveChanges();
+//}
 
-// - update a trainee's information
-static void UpdateSpartans(string firstName, string newFirstName) {
-    using var db = new NorthwindContext();
-    // Just get the first person with the name
-    var spartans = db.Spartans.Where(s => s.FirstName == firstName);
-    foreach (var spartan in spartans) {
-        Console.WriteLine($"{spartan.FirstName} {spartan.LastName} (ID: {spartan.PersonId}) " +
-            $"has changed their first name to {newFirstName}");
-        spartan.FirstName = newFirstName;
-    }
-    db.SaveChanges();
-}
+//// - update a trainee's information
+//static void UpdateSpartans(string firstName, string newFirstName) {
+//    using var db = new NorthwindContext();
+//    // Just get the first person with the name
+//    var spartans = db.Spartans.Where(s => s.FirstName == firstName);
+//    foreach (var spartan in spartans) {
+//        Console.WriteLine($"{spartan.FirstName} {spartan.LastName} (ID: {spartan.PersonId}) " +
+//            $"has changed their first name to {newFirstName}");
+//        spartan.FirstName = newFirstName;
+//    }
+//    db.SaveChanges();
+//}
 
-// - delete a trainee (or trainees)
-static void DeleteSpartan(params string[] firstName) {
-    using var db = new NorthwindContext();
-    foreach (var name in firstName) {
-        // Just get 1 person with the name
-        var spartan = db.Spartans.Where(s => s.FirstName == name).FirstOrDefault();
-        if (spartan is not null) {
-            Console.WriteLine($"Deleting {spartan.FirstName} {spartan.LastName} " +
-                                $"(ID: {spartan.PersonId})");
-            db.Spartans.Remove(spartan);
-        }
-    }
-    db.SaveChanges();
-}
+//// - delete a trainee (or trainees)
+//static void DeleteSpartan(params string[] firstName) {
+//    using var db = new NorthwindContext();
+//    foreach (var name in firstName) {
+//        // Just get 1 person with the name
+//        var spartan = db.Spartans.Where(s => s.FirstName == name).FirstOrDefault();
+//        if (spartan is not null) {
+//            Console.WriteLine($"Deleting {spartan.FirstName} {spartan.LastName} " +
+//                                $"(ID: {spartan.PersonId})");
+//            db.Spartans.Remove(spartan);
+//        }
+//    }
+//    db.SaveChanges();
+//}
 
-ReadAllInfo();
+//ReadAllInfo();
 
-var spartanList = new List<Spartan>() {
-    new Spartan() {
-        Title = "Ms.",
-        FirstName = "Kate",
-        LastName = "Nibble",
-    },
-    new Spartan() {
-        Title = "Mr.",
-        FirstName = "David",
-        LastName = "Edgar",
-        Course = "Spanish",
-        UniversityAttended = "Oxford University",
-        Mark = 89
-    }
-};
+//var spartanList = new List<Spartan>() {
+//    new Spartan() {
+//        Title = "Ms.",
+//        FirstName = "Kate",
+//        LastName = "Nibble",
+//    },
+//    new Spartan() {
+//        Title = "Mr.",
+//        FirstName = "David",
+//        LastName = "Edgar",
+//        Course = "Spanish",
+//        UniversityAttended = "Oxford University",
+//        Mark = 89
+//    }
+//};
 
-AddSpartans(spartanList);
+//AddSpartans(spartanList);
 
-UpdateSpartans("David", "George");
+//UpdateSpartans("David", "George");
 
-DeleteSpartan("George", "David", "Kate");
+//DeleteSpartan("George", "David", "Kate");
 
 #endregion
+
+#region LINQ Query Syntax
+//using (var db = new NorthwindContext()) {
+
+//var records =
+//    from customer in db.Customers
+//    select customer;
+//foreach (var row in records) {
+//    Console.WriteLine(row);
+//}
+
+//var londonBerlinQuery1 =
+//    from customer in db.Customers
+//    where customer.City == "London" || customer.City == "Berlin"
+//    select customer;
+
+//foreach (var customer in londonBerlinQuery1) {
+//    Console.WriteLine(customer);
+//}
+
+//var londonBerlinQuery2 =
+//    from customer in db.Customers
+//    where customer.City == "London" || customer.City == "Berlin"
+//    select new { Customer = customer.ContactName, Country = customer.Country };
+
+//foreach (var customer in londonBerlinQuery2) {
+//    Console.WriteLine($"{customer.Customer} lives in {customer.Country}");
+//}
+
+//var orderProductsByUnitPrice =
+//    from p in db.Products
+//    orderby p.UnitPrice descending // default ascending if not specified
+//    select p;
+
+//foreach (var product in orderProductsByUnitPrice) {
+//    Console.WriteLine($"{product.ProductId} - {product.UnitPrice:C}");
+//}
+
+//var groupProductsByUnitInStockQuery =
+//    from p in db.Products
+//    group p by p.SupplierId into newGroup
+
+//    select new {
+//        SupplierID = newGroup.Key,
+//        UnitsInStock = newGroup.Sum(c => c.UnitsInStock)
+//    };
+
+//foreach (var result in groupProductsByUnitInStockQuery) {
+//    Console.WriteLine(result);
+//}
+//}
+#endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
