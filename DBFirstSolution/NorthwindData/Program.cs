@@ -214,44 +214,78 @@ using System.Reflection.Metadata.Ecma335;
 #region Method Syntax Task
 
 //using (var db = new NorthwindContext()) {
-    //var berlinOrLondon = db.Customers
-    //    .Select(c => new { c.ContactName, c.City })
-    //    .Where(c => c.City == "London" || c.City == "Berlin");
+//var berlinOrLondon = db.Customers
+//    .Select(c => new { c.ContactName, c.City })
+//    .Where(c => c.City == "London" || c.City == "Berlin");
 
-    //foreach (var c in berlinOrLondon) {
-    //    Console.WriteLine($"{c.ContactName} lives in {c.City}");
-    //}
+//foreach (var c in berlinOrLondon) {
+//    Console.WriteLine($"{c.ContactName} lives in {c.City}");
+//}
 
-    //var productsGrouped = db.Products
-    //    .Select(p => new { p.UnitsInStock, p.SupplierId })
-    //    .GroupBy(p => p.SupplierId)
-    //    .Select(p => new {
-    //        Total = p.Sum(p => p.UnitsInStock),
-    //        SupplierId = p.Key
-    //    });
+//var productsGrouped = db.Products
+//    .Select(p => new { p.UnitsInStock, p.SupplierId })
+//    .GroupBy(p => p.SupplierId)
+//    .Select(p => new {
+//        Total = p.Sum(p => p.UnitsInStock),
+//        SupplierId = p.Key
+//    });
 
-    //foreach (var prod in productsGrouped) {
-    //    Console.WriteLine($"Supplier {prod.SupplierId} has {prod.Total} units in stock");
-    //}
+//foreach (var prod in productsGrouped) {
+//    Console.WriteLine($"Supplier {prod.SupplierId} has {prod.Total} units in stock");
+//}
 
-    //var productsOrdered = db.Products
-    //    .Select(p => new { p.QuantityPerUnit, p.ReorderLevel })
-    //    .OrderBy(p => p.QuantityPerUnit)
-    //    .ThenByDescending(p => p.ReorderLevel);
+//var productsOrdered = db.Products
+//    .Select(p => new { p.QuantityPerUnit, p.ReorderLevel })
+//    .OrderBy(p => p.QuantityPerUnit)
+//    .ThenByDescending(p => p.ReorderLevel);
 
-    //foreach (var product in productsOrdered) {
-    //    Console.WriteLine($"{product.QuantityPerUnit} - {product.ReorderLevel}");
-    //}
+//foreach (var product in productsOrdered) {
+//    Console.WriteLine($"{product.QuantityPerUnit} - {product.ReorderLevel}");
+//}
 //}
 
 
 #endregion
 
 
+#region Eager Loading (Includes)
+//using (var db = new NorthwindContext()) {
+//var orders = db.Orders
+//    .Include(o => o.Customer)
+//    .Include(o => o.OrderDetails)
+//    .Where(o => o.Freight > 750);
+
+//foreach (var order in orders) {
+//    if (order.Customer != null)
+//        Console.WriteLine($"Order {order.OrderId} " +
+//            $"was made by {order.Customer.ContactName} " +
+//            $"of {order.Customer.CompanyName}");
+//    foreach (var item in order.OrderDetails)
+//        Console.WriteLine($"Product: {item.ProductId}, Quantity: {item.Quantity}");
+//}
+
+//var orders = db.Orders
+//.Include(o => o.Customer)
+//.Include(o => o.OrderDetails)
+//.ThenInclude(od => od.Product)
+//.Where(o => o.Freight > 750)
+//.Select(o => o);
 
 
 
+//foreach (var order in orders) {
+//    Console.WriteLine($"Order {order.OrderId} " +
+//            $"was made by {order.Customer.ContactName} " +
+//            $"of {order.Customer.CompanyName}");
 
 
 
+//    foreach (var od in order.OrderDetails) {
+//        Console.WriteLine($"\t Product: {od.ProductId} " +
+//            $"- {od.Product.ProductName} " +
+//            $"- Quantity {od.Quantity}");
+//    }
+//}
+//}
+#endregion
 
