@@ -5,11 +5,9 @@ namespace EF_ModelFirstTests
     public class Tests
     {
         [SetUp]
-        public void Setup()
-        {
+        public void Setup() {
             // remove test entry in DB if present
-            using (var db = new SouthwindContext())
-            {
+            using (var db = new SouthwindContext()) {
                 var selectedCustomers =
                 from c in db.Customers
                 where c.CustomerId == "MANDA"
@@ -21,64 +19,53 @@ namespace EF_ModelFirstTests
         }
 
         [Test]
-        public void WhenANewCustomerIsAdded_TheNumberOfCustomersIncreasesBy1()
-        {
+        public void WhenANewCustomerIsAdded_TheNumberOfCustomersIncreasesBy1() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenANewCustomerIsAdded_TheirDetailsAreCorrect()
-        {
+        public void WhenANewCustomerIsAdded_TheirDetailsAreCorrect() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenRetrievingCustomers_CustomerListIsRightLength()
-        {
+        public void WhenRetrievingCustomers_CustomerListIsRightLength() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenRetrievingACustomer_ThatCustomerHasRightDetails()
-        {
+        public void WhenRetrievingACustomer_ThatCustomerHasRightDetails() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenACustomerIsUpdated_TheTableDetailsUpdated()
-        {
+        public void WhenACustomerIsUpdated_TheTableDetailsUpdated() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenACustomerIsNotInTheDatabase_Update_ReturnsFalse()
-        {
+        public void WhenACustomerIsNotInTheDatabase_Update_ReturnsFalse() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenACustomerIsRemoved_TheNumberOfCustomersDecreasesBy1()
-        {
+        public void WhenACustomerIsRemoved_TheNumberOfCustomersDecreasesBy1() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenACustomerIsRemoved_TheyAreNoLongerInTheDatabase()
-        {
+        public void WhenACustomerIsRemoved_TheyAreNoLongerInTheDatabase() {
             Assert.Fail();
         }
 
         [Test]
-        public void WhenACustomerIsNotInTheDatabase_Remove_ReturnsFalse()
-        {
+        public void WhenACustomerIsNotInTheDatabase_Remove_ReturnsFalse() {
             Assert.Fail();
         }
 
         [TearDown]
-        public void TearDown()
-        {
-            using (var db = new SouthwindContext())
-            {
+        public void TearDown() {
+            using (var db = new SouthwindContext()) {
                 var selectedCustomers =
                 from c in db.Customers
                 where c.CustomerId == "MANDA"
