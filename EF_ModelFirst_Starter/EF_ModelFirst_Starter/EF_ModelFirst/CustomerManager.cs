@@ -9,7 +9,7 @@ namespace EF_ModelFirst
 {
     internal class CustomerManager
     {
-        private SouthwindContext _db;
+        private readonly SouthwindContext _db;
 
         public CustomerManager(SouthwindContext db) {
             _db = db;

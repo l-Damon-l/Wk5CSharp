@@ -89,7 +89,7 @@ namespace EF_ModelFirst
         private static void SeedOrderDb(SouthwindContext db) {
             // Delete all entries in db.Orders
             db.Orders.RemoveRange(db.Orders);
-            // Set IDENTITY INSERT TO ON
+            // Reset the auto-incrementing ID
             db.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Orders', RESEED, 0);");  // Reset the Identity (OrderId) to 1
             var orderArray = new Order[] {
                 new Order {
@@ -129,6 +129,7 @@ namespace EF_ModelFirst
         private static void SeedOrderDetailsDb(SouthwindContext db) {
             // Delete all entries in db.OrderDetails
             db.OrderDetails.RemoveRange(db.OrderDetails);
+            // Reset the auto-incrementing ID
             db.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.OrderDetails', RESEED, 0);");
             var detailsArray = new[] {
                 new OrderDetail{
@@ -168,6 +169,7 @@ namespace EF_ModelFirst
         private static void SeedSuppliersDb(SouthwindContext db) {
             // Delete all entries in db.OrderDetails
             db.Suppliers.RemoveRange(db.Suppliers);
+            // Reset the auto-incrementing ID
             db.Database.ExecuteSqlRaw("DBCC CHECKIDENT('dbo.Suppliers', RESEED, 0);");
             var suppliersArray = new[] {
                 new Supplier {
