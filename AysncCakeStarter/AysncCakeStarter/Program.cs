@@ -19,8 +19,10 @@ namespace AysncCake
             var pizzaTask = OrderPizzaAsync();
             PlayPartyGames();
             OpenPresents();
-            await pizzaTask;
-            var cake = await cakeTask;
+            // Experimenting with Task.WhenAll...
+            // Probably better to just await each task on a separate line here though
+            await Task.WhenAll(cakeTask, pizzaTask);
+            var cake = cakeTask.Result;
             Console.WriteLine($"Happy birthday, {name}, {cake}!!");
         }
 

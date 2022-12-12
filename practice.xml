@@ -1,0 +1,29 @@
+<!-- XML Head -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML Root -->
+<sparta>
+    <spartan>
+        <name>John Johnson</name>
+        <age>25</age>
+        <city>Birmingham</city>
+        <country>UK</country>
+    </spartan>
+    <spartan>
+        <name>Dave Davis</name>
+        <age>38</age>
+        <city>Leeds</city>
+        <country>UK</country>
+    </spartan>
+    <spartan>
+        <name>Mary Little</name>
+        <age>22</age>
+        <city>London</city>
+        <country>UK</country>
+    </spartan>
+    <spartan>
+        <name>Maria Sophia</name>
+        <age>30</age>
+        <city>Paris</city>
+        <country>France</country>
+    </spartan>
+</sparta>
