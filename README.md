@@ -17,6 +17,7 @@ course.
     -   [YAML](#yaml)
     -   [Serialisation](#serialisation)
     -   [Deserialisation](#deserialisation)
+-   [Asynchronous Programming](#asynchronous-programming)
 
 ## LINQ
 
@@ -194,3 +195,41 @@ of serialisation are JSON, XML and YAML.
 Deserialisation is the reverse process of serialisation. It is the process of
 converting a stream of bytes into an object. For example, we can convert a JSON
 file/string into a C# object.
+
+## Asynchronous Programming
+
+<hr />
+
+Not to be confused with multi-threading, asynchronous programming is a way of
+writing code that allows a program to run other code while waiting for an
+asynchronous operation to complete. This is useful when we want to perform a
+long running task without blocking the main thread. Async is commonly used for
+I/O bound operations, such as accessing a database or a web service.
+
+An example of some asynchronous methods are shown below.
+
+```csharp
+public async Task<string> GetHtmlAsync(string url)
+{
+    using (var client = new HttpClient())
+    {
+        var html = await client.GetStringAsync(url);
+        return html;
+    }
+}
+
+public async Task<List<Person>> GetPeopleAsListAsync()
+{
+    using (var context = new MyDbContext())
+    {
+        var list = await context.MyDbSet.ToListAsync();
+        return list;
+    }
+}
+```
+
+The main parts of an async method in C# are:
+
+-   The method must be marked with the async keyword.
+-   The method must return a Task or Task\<T> (or void).
+-   The method must contain one or more await expressions.
